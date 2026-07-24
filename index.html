@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Phù Phép Minecraft - Professional Edition</title>
+    <style>
+        :root {
+            --primary-color: #f8fafc;
+            --secondary-color: #0f172a;
+            --accent-color: #38bdf8;
+            --bg-color: #020617;
+            --card-bg: #111827;
+            --text-color: #e2e8f0;
+            --border-color: #334155;
+            --muted-color: #94a3b8;
+
+            /* Tier Colors from bonus.html */
+            --common-color: #64748b;
+            --rare-color: #1e90ff;
+            --epic-color: #7dd3fc;
+            --legendary-color: #ff8c00;
+            --relic-color: #6d28d9;
+            --mythic-color: #ff0000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background:
+                radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 20%),
+                linear-gradient(135deg, #020617, #0f172a 55%, #111827);
+            margin: 0;
+            padding: 32px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.88);
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            backdrop-filter: blur(8px);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.4);
+            padding-bottom: 24px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 2.4em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #1e90ff, #ff8c00, #ff0000);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.05em;
+            color: var(--muted-color);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .edition {
+            display: inline-block;
+            background: linear-gradient(90deg, #1e90ff, #a855f7, #ff0000);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 0.9em;
+            font-weight: 700;
+            margin-top: 12px;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+        }
+
+        .toc {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            font-size: 1.3em;
+            color: #f8fafc;
+        }
+
+        .toc ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #7dd3fc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #0f172a, #111827);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        .summary-card h2 {
+            color: #f8fafc;
+            margin: 0 0 15px 0;
+            font-size: 1.35em;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+            color: #e2e8f0;
+        }
+
+        .summary-table th {
+            background: #0f172a;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 0.82em;
+        }
+
+        .summary-table tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-common { background: rgba(100, 116, 139, 0.15); color: #64748b; border: 1px solid #64748b; }
+        .badge-rare { background: rgba(30, 144, 255, 0.15); color: #1e90ff; border: 1px solid #1e90ff; }
+        .badge-epic { background: rgba(125, 211, 252, 0.18); color: #7dd3fc; border: 1px solid #7dd3fc; }
+        .badge-legend { background: rgba(255, 140, 0, 0.15); color: #ff8c00; border: 1px solid #ff8c00; }
+        .badge-relic { background: rgba(109, 40, 217, 0.18); color: #6d28d9; border: 1px solid #6d28d9; }
+        .badge-mythic { background: rgba(255, 0, 0, 0.15); color: #ff0000; border: 1px solid #ff0000; box-shadow: 0 0 8px rgba(255, 0, 0, 0.3); }
+
+        .rating-star {
+            color: #f59e0b;
+            letter-spacing: 2px;
+        }
+
+        section {
+            margin-bottom: 45px;
+        }
+
+        h2.section-title {
+            color: #f8fafc;
+            border-bottom: 2px solid rgba(148, 163, 184, 0.35);
+            padding-bottom: 8px;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .tier-title {
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.25em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+        }
+
+        .tier-common { background: linear-gradient(90deg, #64748b, #475569); }
+        .tier-rare { background: linear-gradient(90deg, #1e90ff, #2563eb); }
+        .tier-epic { background: linear-gradient(90deg, #7dd3fc, #38bdf8); }
+        .tier-legendary { background: linear-gradient(90deg, #ff8c00, #ea580c); }
+        .tier-relic { background: linear-gradient(90deg, #6d28d9, #4c1d95); }
+        .tier-mythic { background: linear-gradient(90deg, #ff0000, #b91c1c); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 0.98));
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+            color: #e2e8f0;
+        }
+
+        th {
+            background-color: #0f172a;
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        tr:hover {
+            background-color: rgba(255,255,255,0.03);
+        }
+
+        td.stt {
+            text-align: center;
+            font-weight: bold;
+            width: 50px;
+            color: #7f8c8d;
+        }
+
+        td.name {
+            font-weight: 700;
+            color: #f8fafc;
+            white-space: nowrap;
+        }
+
+        td.rating {
+            white-space: nowrap;
+            font-size: 0.9em;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        .badge-pvp { background: #e74c3c; color: white; }
+        .badge-pve { background: #27ae60; color: white; }
+        .badge-farm { background: #f39c12; color: white; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            table, th, td {
+                font-size: 0.85em;
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>CẨM NANG PHÙ PHÉP MINECRAFT</h1>
+        <div class="subtitle">Tài Liệu Tra Cứu Toàn Diện & Chi Tiết Nhất Từ Common Đến Mythic</div>
+        <div>Định Dạng Chuẩn Cho Game Thủ & Server Admin</div>
+        <div class="edition">2026 EDITION</div>
+    </header>
+
+    <div class="toc">
+        <h2>MỤC LỤC & TỔNG QUAN HỆ THỐNG</h2>
+        <ul>
+            <li><a href="#section-summary">0. Bảng Tổng Quan Phẩm Cấp</a></li>
+            <li><a href="#section-overview">1. Bảng Tổng Hợp Phù Phép Theo Chức Năng</a></li>
+            <li>
+                <a href="#section-details">2. Danh Sách Chi Tiết Theo Độ Hiếm</a>
+                <ul>
+                    <li><a href="#common">2.1 Common (Thường)</a></li>
+                    <li><a href="#rare">2.2 Rare (Hiếm)</a></li>
+                    <li><a href="#epic">2.3 Epic (Sử Thi)</a></li>
+                    <li><a href="#relic">2.4 Relic (Cổ Vật)</a></li>
+                    <li><a href="#legendary">2.5 Legendary (Huyền Thoại)</a></li>
+                    <li><a href="#mythic">2.6 Mythic (Thần Thoại)</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <section id="section-summary" class="summary-card">
+        <h2>0. BẢNG TỔNG QUAN PHẨM CẤP</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Phẩm cấp</th>
+                    <th>Mã màu</th>
+                    <th>Mô tả đặc trưng</th>
+                    <th>Trang bị áp dụng</th>
+                    <th>Đánh giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tier-badge badge-common">COMMON</span></td>
+                    <td>#64748B</td>
+                    <td>Chỉ số cơ bản, dễ kiếm ở giai đoạn đầu game.</td>
+                    <td>Tất cả công cụ & giáp</td>
+                    <td><span class="rating-star">⭐⭐☆☆☆</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-badge badge-rare">RARE</span></td>
+                    <td>#1E90FF</td>
+                    <td>Tăng cường hiệu suất và sát thương mức trung bình.</td>
+                    <td>Kiếm, giáp, cung</td>
+                    <td><span class="rating-star">⭐⭐⭐☆☆</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-badge badge-epic">EPIC</span></td>
+                    <td>#A855F7</td>
+                    <td>Kỹ năng bổ trợ nâng cao, tăng tiện ích khai thác.</td>
+                    <td>Cúp, rìu, cần câu</td>
+                    <td><span class="rating-star">⭐⭐⭐⭐☆</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-badge badge-legend">LEGENDARY</span></td>
+                    <td>#FF8C00</td>
+                    <td>Sở hữu các nội tại và hiệu ứng kích hoạt mạnh mẽ.</td>
+                    <td>Kiếm, giáp cao cấp</td>
+                    <td><span class="rating-star">⭐⭐⭐⭐⭐</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-badge badge-relic">RELIC</span></td>
+                    <td>#14B8A6</td>
+                    <td>Hiệu ứng đặc biệt hiếm có, bổ trợ chuyên sâu.</td>
+                    <td>Trident, đồ đặc biệt</td>
+                    <td><span class="rating-star">⭐⭐⭐⭐⭐</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-badge badge-mythic">MYTHIC</span></td>
+                    <td>#FF0000</td>
+                    <td>Sức mạnh tối thượng, hiệu ứng độc quyền & chỉ số bá đạo.</td>
+                    <td>Boss Drop / Ultimate</td>
+                    <td><span class="rating-star">⭐⭐⭐⭐⭐+</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- SECTION 1 -->
+    <section id="section-overview">
+        <h2 class="section-title">1. BẢNG TỔNG HỢP THEO CHỨC NĂNG</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nhóm Chức Năng</th>
+                    <th>Số Lượng</th>
+                    <th>Ví Dụ Phù Phép Tiêu Biểu</th>
+                    <th>Độ Hiếm Chủ Yếu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Sát thương & Tấn công</strong></td>
+                    <td>75</td>
+                    <td>Giật Sét, Đấm Tử Thần, Nghiền Xương, Nạn Đói...</td>
+                    <td>Common, Legendary, Epic</td>
+                </tr>
+                <tr>
+                    <td><strong>Phòng thủ & Hồi phục</strong></td>
+                    <td>60</td>
+                    <td>Trái Dấu, Trả Lại, Nóng Chảy, Tham Ăn...</td>
+                    <td>Common, Legendary, Epic</td>
+                </tr>
+                <tr>
+                    <td><strong>Khống chế & Debuff</strong></td>
+                    <td>18</td>
+                    <td>Kéo, Quyến Rũ, Bẫy, Nguyền Rủa...</td>
+                    <td>Epic, Mythic, Relic</td>
+                </tr>
+                <tr>
+                    <td><strong>Khai thác & Nông nghiệp</strong></td>
+                    <td>20</td>
+                    <td>Luyện Kim, Kinh Nghiệm, Hết Hơi, Đao Phủ...</td>
+                    <td>Common, Legendary, Epic</td>
+                </tr>
+                <tr>
+                    <td><strong>Linh hồn & Đặc biệt (Mythic/Relic)</strong></td>
+                    <td>21</td>
+                    <td>Người Cá, Mắt Cú, Hoành Tráng, Lò Xo...</td>
+                    <td>Common, Legendary, Epic</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="section-details">
+        <h2 class="section-title">2. DANH SÁCH PHÙ PHÉP CHI TIẾT THEO ĐỘ HIẾM</h2>
+
+        <!-- COMMON -->
+        <div id="common" class="tier-title tier-common">
+            <span>Độ Hiếm: COMMON</span>
+            <span>11 Phù Phép</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th>Tên Phù Phép</th>
+                    <th>Mô Tả Tác Dụng</th>
+                    <th>Nhóm Chức Năng</th>
+                    <th>Trang Bị</th>
+                    <th>Đánh Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="stt">1</td>
+                    <td class="name">Giật Sét</td>
+                    <td>Có tỉ lệ giật sét lên kẻ thù.</td>
+                    <td>Tấn công / Sét</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: B | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">2</td>
+                    <td class="name">Người Cá</td>
+                    <td>Cho phép thở khi ở dưới nước.</td>
+                    <td>Tiện ích / Lặn</td>
+                    <td>Mũ</td>
+                    <td class="rating">PvP: C | PvE: B | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">3</td>
+                    <td class="name">Luyện Kim</td>
+                    <td>Có tỉ lệ nấu chảy các khối khi khai thác.</td>
+                    <td>Khai thác / Tự nấu</td>
+                    <td>Cúp/Xẻng</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">4</td>
+                    <td class="name">Kinh Nghiệm</td>
+                    <td>Có tỉ lệ nhận được kinh nghiệm khi khai thác quặng.</td>
+                    <td>Khai thác / EXP</td>
+                    <td>Công cụ</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">5</td>
+                    <td class="name">Hết Hơi</td>
+                    <td>Có tỉ lệ hồi lại không khí khi đào dưới nước.</td>
+                    <td>Khai thác / Lặn</td>
+                    <td>Công cụ/Mũ</td>
+                    <td class="rating">PvP: C | PvE: B | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">6</td>
+                    <td class="name">Mắt Cú</td>
+                    <td>Cho bạn vĩnh viễn khả năng nhìn trong bóng tối khi trang bị.</td>
+                    <td>Tiện ích / Tầm nhìn</td>
+                    <td>Mũ/Giáp</td>
+                    <td class="rating">PvP: B | PvE: A | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">7</td>
+                    <td class="name">Đao Phủ</td>
+                    <td>Có tỉ lệ rơi ra đầu của kẻ thù mà bạn tiêu diệt.</td>
+                    <td>Săn bắt / Thu thập</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">8</td>
+                    <td class="name">Trái Dấu</td>
+                    <td>Có tỉ lệ đẩy bạn ra xa khỏi kẻ thù.</td>
+                    <td>Phòng thủ / Đẩy lùi</td>
+                    <td>Giáp/Vũ khí</td>
+                    <td class="rating">PvP: B | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">9</td>
+                    <td class="name">Hoành Tráng</td>
+                    <td>Cho bạn hiệu ứng lòe loẹt và âm thanh khác biệt.</td>
+                    <td>Hiệu ứng / Trang trí</td>
+                    <td>Mọi trang bị</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">10</td>
+                    <td class="name">Đấm Tử Thần</td>
+                    <td>Tăng sát thương gây ra cho Zombie.</td>
+                    <td>Tấn công / Sát thương mob</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">11</td>
+                    <td class="name">Nghiền Xương</td>
+                    <td>Tăng sát thương gây ra cho Skeleton.</td>
+                    <td>Tấn công / Sát thương mob</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: S | Farm: B</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- RARE -->
+        <div id="rare" class="tier-title tier-rare">
+            <span>Độ Hiếm: RARE</span>
+            <span>13 Phù Phép</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th>Tên Phù Phép</th>
+                    <th>Mô Tả Tác Dụng</th>
+                    <th>Nhóm Chức Năng</th>
+                    <th>Trang Bị</th>
+                    <th>Đánh Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="stt">1</td>
+                    <td class="name">Trồng Lại</td>
+                    <td>Tự trồng lại cây sau khi thu hoạch.</td>
+                    <td>Nông nghiệp</td>
+                    <td>Cuốc/Rìu</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">2</td>
+                    <td class="name">Nạn Đói</td>
+                    <td>Có tỉ lệ khiến kẻ địch bị hiệu ứng Đói bụng.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">3</td>
+                    <td class="name">Điên Cuồng</td>
+                    <td>Có tỉ lệ tăng sức mạnh và sự mệt mỏi khi đào.</td>
+                    <td>Tấn công & Khai thác</td>
+                    <td>Công cụ/Vũ khí</td>
+                    <td class="rating">PvP: B | PvE: B | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">4</td>
+                    <td class="name">Trả Lại</td>
+                    <td>Hấp thụ và trả ngược lại sát thương mà kẻ địch gây ra.</td>
+                    <td>Phòng thủ / Phản sát thương</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">5</td>
+                    <td class="name">Nổ Tung</td>
+                    <td>Có tỉ lệ bắn ra mũi tên gây nổ.</td>
+                    <td>Tấn công tầm xa / Nổ</td>
+                    <td>Cung/Nỏ</td>
+                    <td class="rating">PvP: A | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">6</td>
+                    <td class="name">Nóng Chảy</td>
+                    <td>Có tỉ lệ khiến kẻ tấn công bạn bị cháy.</td>
+                    <td>Phòng thủ / Lửa</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">7</td>
+                    <td class="name">Tham Ăn</td>
+                    <td>Có tỉ lệ để hồi lại cơn đói trong khi chiến đấu.</td>
+                    <td>Hồi phục / Trạng thái</td>
+                    <td>Giáp/Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: A | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">8</td>
+                    <td class="name">Hai Ngón</td>
+                    <td>Tự động đặt các khối bị phá vỡ bởi công cụ vào trong kho của bạn.</td>
+                    <td>Khai thác / Tiện ích</td>
+                    <td>Công cụ</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">9</td>
+                    <td class="name">Tự Hủy</td>
+                    <td>Triệu hồi creeper làm vệ sĩ của bạn khi gần chết.</td>
+                    <td>Phòng thủ / Triệu hồi</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">10</td>
+                    <td class="name">Thợ Săn</td>
+                    <td>Tăng sát thương gây ra cho các loài động vật.</td>
+                    <td>Săn bắt</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: B | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">11</td>
+                    <td class="name">Vô Hồn</td>
+                    <td>Tăng sát thương gây ra cho Quái Vật.</td>
+                    <td>Tấn công / Sát thương mob</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: S | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">12</td>
+                    <td class="name">Hủy Diệt</td>
+                    <td>Có tỉ lệ gây hiệu ứng wither.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">13</td>
+                    <td class="name">Nuốt Chửng</td>
+                    <td>Có tỉ lệ phục hồi thức ăn khi tiêu diệt quái vật.</td>
+                    <td>Hồi phục</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: B | PvE: S | Farm: A</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- EPIC -->
+        <div id="epic" class="tier-title tier-epic">
+            <span>Độ Hiếm: EPIC</span>
+            <span>42 Phù Phép</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th>Tên Phù Phép</th>
+                    <th>Mô Tả Tác Dụng</th>
+                    <th>Nhóm Chức Năng</th>
+                    <th>Trang Bị</th>
+                    <th>Đánh Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="stt">1</td>
+                    <td class="name">Mạnh Mẽ (Impact)</td>
+                    <td>Có tỉ lệ gây gấp đôi sát thương lên kẻ thù.</td>
+                    <td>Tấn công / Bộc phá</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">2</td>
+                    <td class="name">Thợ Đào Quặng</td>
+                    <td>Có thể khai thác toàn bộ mạch quặng cùng một lúc.</td>
+                    <td>Khai thác / Khai khoáng</td>
+                    <td>Cúp</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">3</td>
+                    <td class="name">Sát Thủ Ender</td>
+                    <td>Tăng sát thương gây ra cho Enderman và rồng Ender.</td>
+                    <td>Tấn công / Sát thương mob</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: S | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">4</td>
+                    <td class="name">Hiến Tế</td>
+                    <td>Tăng sát thương gây ra cho Nhện.</td>
+                    <td>Tấn công / Sát thương mob</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: A | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">5</td>
+                    <td class="name">Lưỡi câu</td>
+                    <td>Nhận thêm kinh nghiệm từ câu cá.</td>
+                    <td>Nông nghiệp / Câu cá</td>
+                    <td>Cần câu</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">6</td>
+                    <td class="name">Kéo</td>
+                    <td>Kéo mục tiêu bị đánh về phía bạn.</td>
+                    <td>Khống chế</td>
+                    <td>Vũ khí/Đinh ba</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">7</td>
+                    <td class="name">Tử Thần</td>
+                    <td>Tỉ lệ gây hiệu ứng Wither và Mù cho đối thủ khi gây sát thương.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">8</td>
+                    <td class="name">Sát Thủ Địa ngục</td>
+                    <td>Tăng sát thương gây ra cho quái vật Địa ngục.</td>
+                    <td>Tấn công / Sát thương mob</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: S | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">9</td>
+                    <td class="name">Mù</td>
+                    <td>Tỉ lệ gây mù khi tấn công.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">10</td>
+                    <td class="name">Quyến Rũ</td>
+                    <td>Kéo quái vật về phía bạn.</td>
+                    <td>Khống chế / Gom mob</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: B | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">11</td>
+                    <td class="name">Đóng Băng</td>
+                    <td>Gây chậm cho kẻ tấn công khi phòng thủ.</td>
+                    <td>Phòng thủ / Khống chế</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">12</td>
+                    <td class="name">Tê Liệt</td>
+                    <td>Gây hiệu ứng sét khiến địch bị làm chậm và đánh chậm.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">13</td>
+                    <td class="name">Độc</td>
+                    <td>Có tỉ lệ gây hiệu ứng độc.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">14</td>
+                    <td class="name">Độc Dược</td>
+                    <td>Có tỉ lệ gây độc cho kẻ tấn công.</td>
+                    <td>Phòng thủ / Debuff</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">15</td>
+                    <td class="name">Tái Chế</td>
+                    <td>Bảo vệ độ bền của vũ khí và công cụ.</td>
+                    <td>Bảo quản</td>
+                    <td>Mọi trang bị</td>
+                    <td class="rating">PvP: A | PvE: A | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">16</td>
+                    <td class="name">Bay</td>
+                    <td>Có tỉ lệ làm chậm và mệt mỏi kẻ thù.</td>
+                    <td>Khống chế</td>
+                    <td>Vũ khí/Giáp</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">17</td>
+                    <td class="name">Lò Xo</td>
+                    <td>Cho bạn hiệu ứng nhảy cao.</td>
+                    <td>Di chuyển</td>
+                    <td>Giày</td>
+                    <td class="rating">PvP: B | PvE: A | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">18</td>
+                    <td class="name">Triệu Hồi</td>
+                    <td>Khi bị đánh, có tỉ lệ triệu hồi xác sống.</td>
+                    <td>Phòng thủ / Triệu hồi</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: B | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">19</td>
+                    <td class="name">Tà Thuật</td>
+                    <td>Có tỉ lệ gây trạng thái yếu ớt.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">20</td>
+                    <td class="name">Tử Khí</td>
+                    <td>Có tỉ lệ gây hiệu ứng wither.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">21</td>
+                    <td class="name">Bom Khói</td>
+                    <td>Khi gần chết, bạn sẽ triệu hồi bom khói.</td>
+                    <td>Phòng thủ / Tẩu thoát</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">22</td>
+                    <td class="name">Hỏa Ngục (Infernal)</td>
+                    <td>Hiệu ứng lửa bùng nổ.</td>
+                    <td>Tấn công / Diện rộng</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: S | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">23</td>
+                    <td class="name">Dập Tắt</td>
+                    <td>Có tỉ lệ dập tắt lửa cho bạn.</td>
+                    <td>Phòng thủ / Kháng lửa</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: B | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">24</td>
+                    <td class="name">Sóng Xung Kích</td>
+                    <td>Có tỉ lệ đẩy lùi kẻ tấn công.</td>
+                    <td>Phòng thủ / Đẩy lùi</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">25</td>
+                    <td class="name">Ma Cà Rồng</td>
+                    <td>Có tỉ lệ hồi phục 3 máu trong vài giây sau khi bạn tấn công.</td>
+                    <td>Tấn công / Hồi phục</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">26</td>
+                    <td class="name">Đại Kiếm</td>
+                    <td>Tăng sát thương đối với người chơi cầm cung khi bị đánh.</td>
+                    <td>Phản công đặc thù</td>
+                    <td>Kiếm</td>
+                    <td class="rating">PvP: S | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">27</td>
+                    <td class="name">Chuyên Gia Cung</td>
+                    <td>Tăng sát thương đối với người chơi cầm kiếm khi bị đánh.</td>
+                    <td>Phản công đặc thù</td>
+                    <td>Cung</td>
+                    <td class="rating">PvP: S | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">28</td>
+                    <td class="name">Đạn Đạo</td>
+                    <td>Phóng lên không trung khi có HP thấp.</td>
+                    <td>Cứu mạng / Tẩu thoát</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">29</td>
+                    <td class="name">Luồn Lách</td>
+                    <td>Khi bị đánh, bạn có tỉ lệ dịch chuyển ngay sau lưng kẻ thù.</td>
+                    <td>Cơ động / Phản công</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">30</td>
+                    <td class="name">Nguyền Rủa</td>
+                    <td>Có tỉ lệ khiến kẻ thù dính hiệu ứng làm chậm khi đào.</td>
+                    <td>Debuff / Quấy rối</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: B | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">31</td>
+                    <td class="name">Thiện Xạ</td>
+                    <td>Tăng sát thương khi sử dụng nỏ.</td>
+                    <td>Tấn công tầm xa</td>
+                    <td>Nỏ</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">32</td>
+                    <td class="name">Thần Biển</td>
+                    <td>Tăng sát thương khi sử dụng đinh ba.</td>
+                    <td>Tấn công / Đinh ba</td>
+                    <td>Đinh ba</td>
+                    <td class="rating">PvP: A | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">33</td>
+                    <td class="name">Tái Tạo</td>
+                    <td>Có tỉ lệ phục hồi thức ăn khi đang đào.</td>
+                    <td>Khai thác / Hồi phục</td>
+                    <td>Công cụ</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">34</td>
+                    <td class="name">Tên Lửa</td>
+                    <td>Mũi tên biến thành quả cầu lửa.</td>
+                    <td>Tấn công tầm xa / Nổ</td>
+                    <td>Cung</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">35</td>
+                    <td class="name">Chí Mạng</td>
+                    <td>Tăng sát thương gây ra với đòn chí mạng.</td>
+                    <td>Tấn công / Sát thương</td>
+                    <td>Kiếm/Rìu</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">36</td>
+                    <td class="name">Lạnh Toát</td>
+                    <td>Đóng băng mob vào ban đêm.</td>
+                    <td>Khống chế / Ban đêm</td>
+                    <td>Vũ khí/Giáp</td>
+                    <td class="rating">PvP: C | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">37</td>
+                    <td class="name">Tia Lửa</td>
+                    <td>Thiêu đốt đối thủ bằng lửa.</td>
+                    <td>Tấn công / Lửa</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">38</td>
+                    <td class="name">Mạnh Mẽ (Bluntforce)</td>
+                    <td>Có tỉ lệ tấn công với một lực rất mạnh.</td>
+                    <td>Tấn công / Bộc phá</td>
+                    <td>Vũ khí cận chiến</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">39</td>
+                    <td class="name">Tạm Ngưng</td>
+                    <td>Có tỉ lệ không gây đẩy lùi quái vật.</td>
+                    <td>Khống chế / Cận chiến</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: A | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">40</td>
+                    <td class="name">Nam Châm</td>
+                    <td>Đòn đánh của bạn sẽ kéo người chơi lại gần.</td>
+                    <td>Khống chế / PvP</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">41</td>
+                    <td class="name">Kỹ Năng Lướt</td>
+                    <td>Có cơ hội cướp một phần EXP của kẻ địch mỗi khi bạn gây sát thương lên họ.</td>
+                    <td>Cướp bóc / EXP</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">42</td>
+                    <td class="name">Bẫy Lạ</td>
+                    <td>Có cơ hội gây hiệu ứng Chậm mạnh hơn.</td>
+                    <td>Khống chế</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- RELIC -->
+        <div id="relic" class="tier-title tier-relic">
+            <span>Độ Hiếm: RELIC</span>
+            <span>47 Phù Phép</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th>Tên Phù Phép</th>
+                    <th>Mô Tả Tác Dụng</th>
+                    <th>Nhóm Chức Năng</th>
+                    <th>Trang Bị</th>
+                    <th>Đánh Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="stt">1</td>
+                    <td class="name">Nông Dân</td>
+                    <td>Trồng hạt giống với ô 3x3 bằng cách Shift + Chuột phải.</td>
+                    <td>Nông nghiệp / Diện rộng</td>
+                    <td>Cuốc</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">2</td>
+                    <td class="name">Nhẹ Nhàng</td>
+                    <td>Có tỉ lệ không nhận sát thương khi rơi.</td>
+                    <td>Di chuyển / Giảm sát thương</td>
+                    <td>Giày</td>
+                    <td class="rating">PvP: A | PvE: S | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">3</td>
+                    <td class="name">Hên</td>
+                    <td>Tỉ lệ tăng vận may khi câu cá.</td>
+                    <td>Nông nghiệp / May mắn</td>
+                    <td>Cần câu</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">4</td>
+                    <td class="name">Băng Vĩnh Cửu</td>
+                    <td>Tỉ lệ làm chậm và gây chảy máu cho đối thủ.</td>
+                    <td>Tấn công / Băng & Chảy máu</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">5</td>
+                    <td class="name">Tiều Phu</td>
+                    <td>Có tỉ lệ đốn cả cây trong một lần.</td>
+                    <td>Khai thác / Luyện gỗ</td>
+                    <td>Rìu</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">6</td>
+                    <td class="name">Khoảng Cách</td>
+                    <td>Có tỉ lệ tạo khoảng cách với kẻ thù và hồi phục.</td>
+                    <td>Phòng thủ / Tẩu thoát</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">7</td>
+                    <td class="name">Chém Lan</td>
+                    <td>Gây sát thương cho người khác trong bán kính tăng theo cấp độ.</td>
+                    <td>Tấn công / AoE PvP</td>
+                    <td>Kiếm</td>
+                    <td class="rating">PvP: SSS | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">8</td>
+                    <td class="name">Tham Vọng</td>
+                    <td>Gây sát thương cho quái trong bán kính tăng theo cấp độ.</td>
+                    <td>Tấn công / AoE PVE</td>
+                    <td>Kiếm/Rìu</td>
+                    <td class="rating">PvP: C | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">9</td>
+                    <td class="name">Thiên Sứ</td>
+                    <td>Hồi máu khi bị gây sát thương.</td>
+                    <td>Phòng thủ / Hồi máu</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">10</td>
+                    <td class="name">Chệch Hướng</td>
+                    <td>Có tỉ lệ ngăn mũi tên của kẻ địch gây sát thương.</td>
+                    <td>Phòng thủ / Kháng tên</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">11</td>
+                    <td class="name">Tên Gãy</td>
+                    <td>Có tỉ lệ khiến mũi tên bật ra khi đang giữ vật phẩm.</td>
+                    <td>Phòng thủ / Kháng tên</td>
+                    <td>Vũ khí/Khiên</td>
+                    <td class="rating">PvP: SSS | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">12</td>
+                    <td class="name">Chậm Chạp</td>
+                    <td>Có tỉ lệ khiến kẻ thù dính hiệu ứng làm chậm khi đào.</td>
+                    <td>Debuff / Khai thác</td>
+                    <td>Công cụ/Vũ khí</td>
+                    <td class="rating">PvP: B | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">13</td>
+                    <td class="name">Gián Đoạn</td>
+                    <td>Có tỉ lệ khiến kẻ thù dính hiệu ứng làm chậm khi đào.</td>
+                    <td>Debuff / Gây rối</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">14</td>
+                    <td class="name">Tôn Vinh</td>
+                    <td>Có tỉ lệ loại bỏ các hiệu ứng độc.</td>
+                    <td>Phòng thủ / Giải độc</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">15</td>
+                    <td class="name">Lùi Lại</td>
+                    <td>Có tỉ lệ được đẩy lùi khi bị đánh.</td>
+                    <td>Phòng thủ / Né tránh</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">16</td>
+                    <td class="name">Chặn Đòn</td>
+                    <td>Có tỉ lệ phản đòn khi bị đánh và gây tối đa 4 sát thương.</td>
+                    <td>Phòng thủ / Phản đòn</td>
+                    <td>Giáp/Khiên</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">17</td>
+                    <td class="name">Né Tránh</td>
+                    <td>Có tỉ lệ né đòn. Tăng thêm khi đang đi rón rén.</td>
+                    <td>Phòng thủ / Né tránh</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">18</td>
+                    <td class="name">Người Bảo Vệ</td>
+                    <td>Có tỉ lệ sinh ra Người sắt để hỗ trợ và bảo vệ bạn.</td>
+                    <td>Phòng thủ / Triệu hồi Golem</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">19</td>
+                    <td class="name">Mảnh Băng</td>
+                    <td>Có tỉ lệ khiến kẻ địch bị làm chậm.</td>
+                    <td>Khống chế / Lạnh</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">20</td>
+                    <td class="name">Cấy Ghép</td>
+                    <td>Có tỉ lệ phục hồi thức ăn cứ sau mỗi vài giây.</td>
+                    <td>Hồi phục / Trạng thái</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: A | PvE: S | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">21</td>
+                    <td class="name">Khí Obsidian</td>
+                    <td>Cung cấp khả năng kháng lửa vĩnh viễn.</td>
+                    <td>Phòng thủ / Kháng lửa</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: SSS | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">22</td>
+                    <td class="name">Xuyên Thấu</td>
+                    <td>Gây sát thương nhiều hơn cho kẻ thù.</td>
+                    <td>Tấn công / Xuyên giáp</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">23</td>
+                    <td class="name">Xạ Thủ</td>
+                    <td>Tăng sát thương khi sử dụng cung.</td>
+                    <td>Tấn công tầm xa</td>
+                    <td>Cung</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">24</td>
+                    <td class="name">Bảo Vệ</td>
+                    <td>Có tỉ lệ nhận khả năng kháng sát thương khi phòng thủ.</td>
+                    <td>Phòng thủ / Kháng cự</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">25</td>
+                    <td class="name">Biến Mất</td>
+                    <td>Có tỉ lệ trở nên vô hình khi HP thấp.</td>
+                    <td>Phòng thủ / Tẩu thoát</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">26</td>
+                    <td class="name">Bối Rối</td>
+                    <td>Có tỉ lệ gây hiệu ứng buồn nôn cho kẻ thù.</td>
+                    <td>Debuff / Gây choáng</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">27</td>
+                    <td class="name">Phân Hủy</td>
+                    <td>Có tỉ lệ gây thêm sát thương lên độ bền tất cả giáp của kẻ thù.</td>
+                    <td>Tấn công / Phá giáp</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">28</td>
+                    <td class="name">Vỡ Nát</td>
+                    <td>Có tỉ lệ gây thêm sát thương lên độ bền tất cả giáp của kẻ thù.</td>
+                    <td>Tấn công / Phá giáp</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">29</td>
+                    <td class="name">Giáp Nặng</td>
+                    <td>Giảm 2% sát thương từ cung của kẻ thù mỗi cấp độ.</td>
+                    <td>Phòng thủ / Kháng cung</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">30</td>
+                    <td class="name">Hỏa Ngục (Hellfire)</td>
+                    <td>Mũi tên biến thành quả cầu lửa.</td>
+                    <td>Tấn công tầm xa / Lửa nổ</td>
+                    <td>Cung</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">31</td>
+                    <td class="name">Cung Dài</td>
+                    <td>Tăng mạnh sát thương lên người khác khi họ đang cầm cung.</td>
+                    <td>Tấn công / Khắc chế cung</td>
+                    <td>Cung/Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">32</td>
+                    <td class="name">Xe Tăng</td>
+                    <td>Có tỉ lệ giảm 2% sát thương từ rìu của kẻ thù với mỗi cấp độ.</td>
+                    <td>Phòng thủ / Kháng rìu</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">33</td>
+                    <td class="name">Kiếm Sĩ</td>
+                    <td>Có tỉ lệ giảm sát thương nhận vào khi cầm kiếm lên đến 22% ở cấp tối đa.</td>
+                    <td>Phòng thủ / Kiếm</td>
+                    <td>Giáp/Kiếm</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">34</td>
+                    <td class="name">Thần Chết</td>
+                    <td>Gây gấp đôi sát thương cho quái vật trong Nether.</td>
+                    <td>Tấn công / Nether</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">35</td>
+                    <td class="name">Chúa Tể End</td>
+                    <td>Gây gấp đôi sát thương cho quái vật trong The End.</td>
+                    <td>Tấn công / End</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">36</td>
+                    <td class="name">Giáp Creeper</td>
+                    <td>Có tỉ lệ miễn dịch với sát thương nổ, ở cấp cao hơn bạn còn có thêm tỉ lệ hồi phục.</td>
+                    <td>Phòng thủ / Kháng nổ</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: SSS | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">37</td>
+                    <td class="name">Chiêu Hồn</td>
+                    <td>Có tỉ lệ triệu hồi Quỷ lửa để bảo vệ bạn.</td>
+                    <td>Phòng thủ / Triệu hồi Blaze</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">38</td>
+                    <td class="name">Chảy Máu</td>
+                    <td>Khiến đối thủ chảy máu.</td>
+                    <td>Tấn công / Chảy máu</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">39</td>
+                    <td class="name">Thiêu Sống</td>
+                    <td>Thiêu đốt tất cả quái vật trong bán kính.</td>
+                    <td>Tấn công / AoE Quái</td>
+                    <td>Vũ khí/Giáp</td>
+                    <td class="rating">PvP: C | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">40</td>
+                    <td class="name">Mưa Tên</td>
+                    <td>Tạo ra mưa tên xuống đầu đối thủ.</td>
+                    <td>Tấn công tầm xa / Diện rộng</td>
+                    <td>Cung/Nỏ</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">41</td>
+                    <td class="name">Xiên Táo</td>
+                    <td>Bắn vào đầu bằng cung sẽ gây gấp đôi sát thương.</td>
+                    <td>Tấn công tầm xa / Chí mạng</td>
+                    <td>Cung</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">42</td>
+                    <td class="name">Bảo Hộ</td>
+                    <td>Có tỉ lệ tăng tốc độ khi chịu sát thương từ rơi.</td>
+                    <td>Phòng thủ / Cơ động</td>
+                    <td>Giày</td>
+                    <td class="rating">PvP: A | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">43</td>
+                    <td class="name">Rơi Tự Do</td>
+                    <td>Gây sát thương cho quái vật xung quanh khi chịu sát thương từ rơi.</td>
+                    <td>Tấn công / Động năng</td>
+                    <td>Giày</td>
+                    <td class="rating">PvP: B | PvE: S | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">44</td>
+                    <td class="name">Cú Đêm</td>
+                    <td>Gây thêm sát thương cho mob vào ban đêm.</td>
+                    <td>Tấn công / Ban đêm</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: S | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">45</td>
+                    <td class="name">Trò Đùa</td>
+                    <td>Làm loạn vị trí đồ đạc của đối thủ.</td>
+                    <td>Quấy rối / PvP</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">46</td>
+                    <td class="name">Hộ Thể</td>
+                    <td>Có cơ hội hấp thụ sát thương của kẻ địch và hồi máu cho bạn.</td>
+                    <td>Phòng thủ / Hấp thụ</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">47</td>
+                    <td class="name">Hút Máu Mũi Tên</td>
+                    <td>Có cơ hội hút máu từ đối thủ.</td>
+                    <td>Tấn công tầm xa / Hồi máu</td>
+                    <td>Cung/Nỏ</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- LEGENDARY -->
+        <div id="legendary" class="tier-title tier-legendary">
+            <span>Độ Hiếm: LEGENDARY</span>
+            <span>61 Phù Phép</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th>Tên Phù Phép</th>
+                    <th>Mô Tả Tác Dụng</th>
+                    <th>Nhóm Chức Năng</th>
+                    <th>Trang Bị</th>
+                    <th>Đánh Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="stt">1</td>
+                    <td class="name">Xuất Huyết</td>
+                    <td>Khiến kẻ địch bị chảy máu nếu bạn tấn công cận chiến.</td>
+                    <td>Tấn công / Độc chảy máu</td>
+                    <td>Vũ khí cận chiến</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">2</td>
+                    <td class="name">Sát Thú</td>
+                    <td>Tăng sát thương gây ra cho các Động Vật.</td>
+                    <td>Săn bắt</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: B | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">3</td>
+                    <td class="name">Mồi</td>
+                    <td>Tỉ lệ nhận gấp đôi vật phẩm khi câu.</td>
+                    <td>Nông nghiệp / Câu cá</td>
+                    <td>Cần câu</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">4</td>
+                    <td class="name">Cứng Cáp</td>
+                    <td>Có tỉ lệ phục hồi độ bền khi bị người khác tấn công.</td>
+                    <td>Bảo quản / Giáp</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">5</td>
+                    <td class="name">Vá Víu</td>
+                    <td>Có tỉ lệ phục hồi độ bền khi bị quái vật tấn công.</td>
+                    <td>Bảo quản / Giáp</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: B | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">6</td>
+                    <td class="name">Mò Mẫm</td>
+                    <td>Có tỉ lệ làm nổ tung kẻ thù khi bị bắn trúng.</td>
+                    <td>Tấn công tầm xa</td>
+                    <td>Cung/Nỏ</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">7</td>
+                    <td class="name">Khôi Phục</td>
+                    <td>Khi bị vỡ, vật phẩm có khả năng mất phù phép và tự sửa lại 1 nửa độ bền.</td>
+                    <td>Bảo quản / Cứu hộ</td>
+                    <td>Mọi trang bị</td>
+                    <td class="rating">PvP: A | PvE: A | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">8</td>
+                    <td class="name">Chân Nóng Bỏng</td>
+                    <td>Có thể đi trên lava.</td>
+                    <td>Di chuyển / Dung nham</td>
+                    <td>Giày</td>
+                    <td class="rating">PvP: A | PvE: SSS | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">9</td>
+                    <td class="name">Đi Trên Nước</td>
+                    <td>Có thể đi trên mặt nước.</td>
+                    <td>Di chuyển / Mặt nước</td>
+                    <td>Giày</td>
+                    <td class="rating">PvP: A | PvE: S | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">10</td>
+                    <td class="name">Thủy Thần</td>
+                    <td>Gây gấp đôi sát thương khi ở trong nước.</td>
+                    <td>Tấn công / Môi trường</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">11</td>
+                    <td class="name">Lừa Đảo</td>
+                    <td>Có tỉ lệ đầu độc đối thủ và hồi phục máu.</td>
+                    <td>Tấn công & Hồi phục</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">12</td>
+                    <td class="name">Bất Thiện</td>
+                    <td>Bảo vệ với hiệu ứng yếu đuối và wither.</td>
+                    <td>Phòng thủ / Debuff</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">13</td>
+                    <td class="name">Hỗn Loạn</td>
+                    <td>Gây hiệu ứng yếu đuối và wither.</td>
+                    <td>Tấn công / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">14</td>
+                    <td class="name">Hất Tung</td>
+                    <td>Có tỉ lệ hất kẻ tấn công lên không trung.</td>
+                    <td>Phòng thủ / Khống chế</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">15</td>
+                    <td class="name">Mình Dày</td>
+                    <td>Có tỉ lệ nhận ít sát thương hơn.</td>
+                    <td>Phòng thủ / Giảm damage</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">16</td>
+                    <td class="name">Kẻ Man Rợ</td>
+                    <td>Có tỉ lệ gây thêm sát thương bằng rìu.</td>
+                    <td>Tấn công / Rìu</td>
+                    <td>Rìu</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">17</td>
+                    <td class="name">Rõ Ràng</td>
+                    <td>Có tỉ lệ khỏi mù và nhận hiệu ứng nhìn trong bóng tối khi bị đánh.</td>
+                    <td>Phòng thủ / Giải hiệu ứng</td>
+                    <td>Mũ/Giáp</td>
+                    <td class="rating">PvP: S | PvE: A | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">18</td>
+                    <td class="name">Đánh Đôi</td>
+                    <td>Có tỉ lệ tấn công hai lần.</td>
+                    <td>Tấn công / Đòn đôi</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">19</td>
+                    <td class="name">Thiêu Đốt</td>
+                    <td>Thiêu đốt tất cả người chơi trong bán kính.</td>
+                    <td>Tấn công / AoE PvP</td>
+                    <td>Vũ khí/Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">20</td>
+                    <td class="name">Hào Quang Chết Chóc</td>
+                    <td>Có tỉ lệ tiêu diệt nhiều quái vật trong bán kính.</td>
+                    <td>Tấn công / AoE PVE</td>
+                    <td>Giáp/Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">21</td>
+                    <td class="name">Tham Lam</td>
+                    <td>Có tỉ lệ tăng lượng EXP rơi ra từ quái vật.</td>
+                    <td>Thu thập / EXP</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: A | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">22</td>
+                    <td class="name">Hút Máu</td>
+                    <td>Có tỉ lệ hồi phục lại máu khi tấn công.</td>
+                    <td>Tấn công / Hồi máu</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">23</td>
+                    <td class="name">Bọc Sắt</td>
+                    <td>Giảm sát thương từ kiếm của kẻ thù xuống tới 2% mỗi cấp độ.</td>
+                    <td>Phòng thủ / Kháng kiếm</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">24</td>
+                    <td class="name">Thợ Rèn</td>
+                    <td>Tự sửa vũ khí của bạn đổi lại việc gây ra sát thương ít hơn.</td>
+                    <td>Bảo quản</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: A | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">25</td>
+                    <td class="name">Bền Bỉ</td>
+                    <td>Vũ khí với phù phép này sẽ trở nên không thể phá hủy.</td>
+                    <td>Bảo quản / Vĩnh cửu</td>
+                    <td>Mọi trang bị</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">26</td>
+                    <td class="name">Lột Đồ</td>
+                    <td>Có tỉ lệ làm rơi một mảnh giáp ngẫu nhiên từ đối thủ.</td>
+                    <td>Tấn công / Phá trang bị</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">27</td>
+                    <td class="name">Dứt Điểm</td>
+                    <td>Bắn vào đầu bằng đinh ba sẽ gây gấp đôi sát thương.</td>
+                    <td>Tấn công / Đinh ba</td>
+                    <td>Đinh ba</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">28</td>
+                    <td class="name">Liên Kết Linh Hồn</td>
+                    <td>Có tỉ lệ giữ vật phẩm khi chết.</td>
+                    <td>Bảo vệ vật phẩm</td>
+                    <td>Mọi trang bị</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">29</td>
+                    <td class="name">Vô Hiệu Hóa</td>
+                    <td>Có tỉ lệ làm mất vũ khí của đối thủ.</td>
+                    <td>Tấn công / Khống chế</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">30</td>
+                    <td class="name">Tước Đoạt</td>
+                    <td>Có tỉ lệ làm mất vũ khí của đối thủ.</td>
+                    <td>Tấn công / Khống chế</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">31</td>
+                    <td class="name">Phượng Hoàng</td>
+                    <td>Có tỉ lệ hồi sinh sau khi bị tiêu diệt.</td>
+                    <td>Cứu mạng / Tái sinh</td>
+                    <td>Giáp thân</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">32</td>
+                    <td class="name">Khiếp Sợ</td>
+                    <td>Có tỉ lệ thay mũ của đối thủ thành bí ngô trong thời gian ngắn.</td>
+                    <td>Quấy rối / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">33</td>
+                    <td class="name">Xung Đột</td>
+                    <td>Tăng sát thương cận chiến bằng đinh ba.</td>
+                    <td>Tấn công / Đinh ba</td>
+                    <td>Đinh ba</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">34</td>
+                    <td class="name">Phóng</td>
+                    <td>Phóng lên không trung bằng cách ấn Chuột phải.</td>
+                    <td>Cơ động / Bay</td>
+                    <td>Vũ khí/Công cụ</td>
+                    <td class="rating">PvP: S | PvE: S | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">35</td>
+                    <td class="name">Tranh Thủ</td>
+                    <td>Có tỉ lệ gây sát thương gấp đôi trong khi kẻ thù bị mù. Tốn 40 linh hồn/kích hoạt.</td>
+                    <td>Tấn công / Linh hồn</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">36</td>
+                    <td class="name">Nhân Bản</td>
+                    <td>Tỉ lệ nhân số lượng đồ rơi ra từ quái vật. Tốn 5 linh hồn/kích hoạt.</td>
+                    <td>Thu thập / Linh hồn</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">37</td>
+                    <td class="name">Phép Nhân</td>
+                    <td>Có tỉ lệ nhận thêm nhiều quặng hơn bình thường. Tốn 5 linh hồn/kích hoạt.</td>
+                    <td>Khai thác / Linh hồn</td>
+                    <td>Cúp</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">38</td>
+                    <td class="name">Kiếm Tinh Linh</td>
+                    <td>Có thể nhận được nhiều linh hồn hơn từ việc tiêu diệt người chơi khác.</td>
+                    <td>Linh hồn / PvP</td>
+                    <td>Kiếm</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">39</td>
+                    <td class="name">Rìu Tinh Linh</td>
+                    <td>Có thể nhận được nhiều linh hồn hơn từ việc tiêu diệt người chơi khác.</td>
+                    <td>Linh hồn / PvP</td>
+                    <td>Rìu</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">40</td>
+                    <td class="name">Linh Sư</td>
+                    <td>Có thể nhận được nhiều linh hồn hơn khi diệt quái.</td>
+                    <td>Linh hồn / PvE</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: C | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">41</td>
+                    <td class="name">Lấp Lánh</td>
+                    <td>Phóng sét vào người chơi ở gần.</td>
+                    <td>Tấn công / Sét AoE</td>
+                    <td>Giáp/Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">42</td>
+                    <td class="name">Kết Thúc Ca</td>
+                    <td>Tăng tốc độ chạy và máu khi thấp máu.</td>
+                    <td>Cứu mạng / Tăng tốc</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">43</td>
+                    <td class="name">Virus</td>
+                    <td>Nhân đôi mọi hiệu ứng Wither và Poison trên mục tiêu đang bị ảnh hưởng.</td>
+                    <td>Tấn công / Khuếch đại</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">44</td>
+                    <td class="name">Demonforged</td>
+                    <td>Tăng tốc độ mất độ bền của giáp đối thủ.</td>
+                    <td>Tấn công / Phá giáp</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">45</td>
+                    <td class="name">Nọc Độc</td>
+                    <td>Có cơ hội gây độc.</td>
+                    <td>Tấn công / Độc</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: A | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">46</td>
+                    <td class="name">Chiếm Quyền</td>
+                    <td>Có cơ hội biến các Guardian do địch triệu hồi thành của bạn khi chúng bị bắn bằng tên.</td>
+                    <td>Khống chế / Phản triệu hồi</td>
+                    <td>Cung/Nỏ</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">47</td>
+                    <td class="name">Gia Cố</td>
+                    <td>Nhận ít sát thương hơn khi bị đánh từ phía sau.</td>
+                    <td>Phòng thủ / Lưng</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">48</td>
+                    <td class="name">Ban Phước</td>
+                    <td>Có cơ hội xóa các hiệu ứng xấu.</td>
+                    <td>Phòng thủ / Giải thuật</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">49</td>
+                    <td class="name">Tha Hoá</td>
+                    <td>Gây sát thương theo thời gian.</td>
+                    <td>Tấn công / DoT</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">50</td>
+                    <td class="name">Cuồng Nộ</td>
+                    <td>Gây thêm sát thương khi thấp máu.</td>
+                    <td>Tấn công / Cuồng nộ</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">51</td>
+                    <td class="name">Lữ Khách Ender</td>
+                    <td>Có cơ hội xóa Wither và Poison khi bị tấn công và hồi máu ở cấp cao.</td>
+                    <td>Phòng thủ / Hồi phục</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">52</td>
+                    <td class="name">Tiêu Diệt</td>
+                    <td>Phá hủy giáp của đối thủ nhanh hơn!</td>
+                    <td>Tấn công / Phá giáp</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">53</td>
+                    <td class="name">Choáng</td>
+                    <td>Có cơ hội làm chậm đối thủ, khiến họ suy yếu và xóa hiệu ứng chậm khỏi bạn.</td>
+                    <td>Khống chế / Đa năng</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">54</td>
+                    <td class="name">Phản Lực</td>
+                    <td>Có cơ hội hất tung kẻ tấn công lên không trung.</td>
+                    <td>Phòng thủ / Hất tung</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">55</td>
+                    <td class="name">Thanh Tỉnh</td>
+                    <td>Giải mù khi bị tấn công.</td>
+                    <td>Phòng thủ / Giải hiệu ứng</td>
+                    <td>Mũ</td>
+                    <td class="rating">PvP: S | PvE: B | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">56</td>
+                    <td class="name">Khai Sáng</td>
+                    <td>Có thể hồi tim khi đang nhận sát thương.</td>
+                    <td>Phòng thủ / Hồi máu</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">57</td>
+                    <td class="name">Nộ Khí</td>
+                    <td>Với mỗi combo bạn tung trúng, có cơ hội gây 0.5 tim sát thương mỗi combo lên đối thủ.</td>
+                    <td>Tấn công / Combo</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">58</td>
+                    <td class="name">Diệt Trừ</td>
+                    <td>Khi bị tấn công, có cơ hội tạm thời vô hiệu hóa khả năng dùng triệu hồi của kẻ địch.</td>
+                    <td>Phòng thủ / Phá triệu hồi</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">59</td>
+                    <td class="name">Bẫy Linh Hồn</td>
+                    <td>Phủ định toàn bộ phù phép linh hồn của kẻ địch khi đánh trúng. Tốn 2 linh hồn mỗi giây.</td>
+                    <td>Tấn công / Khóa phù phép</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">60</td>
+                    <td class="name">Phục Hồi</td>
+                    <td>Hồi phục một phần HP sau khi tiêu diệt kẻ thù.</td>
+                    <td>Hồi phục / Diệt quái</td>
+                    <td>Vũ khí/Giáp</td>
+                    <td class="rating">PvP: S | PvE: SSS | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">61</td>
+                    <td class="name">Thần Sấm</td>
+                    <td>Gây sét cho quái vật sau mỗi 3 cú đánh liên tiếp.</td>
+                    <td>Tấn công / Sét chuỗi</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: A | PvE: SSS | Farm: S</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- MYTHIC -->
+        <div id="mythic" class="tier-title tier-mythic">
+            <span>Độ Hiếm: MYTHIC</span>
+            <span>20 Phù Phép</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th>Tên Phù Phép</th>
+                    <th>Mô Tả Tác Dụng</th>
+                    <th>Nhóm Chức Năng</th>
+                    <th>Trang Bị</th>
+                    <th>Đánh Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="stt">1</td>
+                    <td class="name">Gắp Vàng</td>
+                    <td>Khi đào có tỉ lệ sẽ nhận được vàng.</td>
+                    <td>Khai thác / Tiền tệ</td>
+                    <td>Cúp/Xẻng</td>
+                    <td class="rating">PvP: C | PvE: C | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">2</td>
+                    <td class="name">Sự Thức Tỉnh</td>
+                    <td>Khi bạn bị tấn công, có khả năng sẽ miễn nhiễm, loại bỏ mọi hiệu ứng xấu và hồi máu.</td>
+                    <td>Bất tử / Cứu mạng</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: A</td>
+                </tr>
+                <tr>
+                    <td class="stt">3</td>
+                    <td class="name">Máu Lạnh</td>
+                    <td>Khi tấn công kẻ địch dưới 30% máu, sẽ gây thêm sát thương chí mạng và nhiều hiệu ứng.</td>
+                    <td>Kết liễu / Sát thương</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">4</td>
+                    <td class="name">Bóng Tối</td>
+                    <td>Tấn công sẽ gây hiệu ứng: Bóng tối, Phát sáng, Chóng mặt, Độc Thời gian kéo dài.</td>
+                    <td>Khống chế tối thượng / Debuff</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">5</td>
+                    <td class="name">Nhanh Nào</td>
+                    <td>Có tỉ lệ nhận được hiệu ứng Đào nhanh sau khi phá hủy block.</td>
+                    <td>Khai thác / Tăng tốc</td>
+                    <td>Công cụ</td>
+                    <td class="rating">PvP: C | PvE: B | Farm: SSS+</td>
+                </tr>
+                <tr>
+                    <td class="stt">6</td>
+                    <td class="name">Đào Nhanh</td>
+                    <td>Cho phép bạn sử dụng công cụ với tốc độ nhanh.</td>
+                    <td>Khai thác / Siêu tốc</td>
+                    <td>Công cụ</td>
+                    <td class="rating">PvP: C | PvE: B | Farm: SSS+</td>
+                </tr>
+                <tr>
+                    <td class="stt">7</td>
+                    <td class="name">Bánh Xe</td>
+                    <td>Tăng tốc độ khi trang bị.</td>
+                    <td>Di chuyển / Tốc độ</td>
+                    <td>Giày/Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: SSS | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">8</td>
+                    <td class="name">Bất Diệt</td>
+                    <td>Có tỉ lệ ngăn giáp của bạn bị mất độ bền.</td>
+                    <td>Bảo quản / Vĩnh cửu</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: SSS+</td>
+                </tr>
+                <tr>
+                    <td class="stt">9</td>
+                    <td class="name">Kết Liễu</td>
+                    <td>Tăng sát thương khi mục tiêu của bạn đang ở máu thấp.</td>
+                    <td>Kết liễu</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">10</td>
+                    <td class="name">Đẩy Xa</td>
+                    <td>Có cơ hội hất văng bạn khỏi những kẻ tấn công cận chiến và làm chậm chúng.</td>
+                    <td>Phòng thủ / Tẩu thoát</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS | PvE: S | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">11</td>
+                    <td class="name">Móc Túi</td>
+                    <td>Có cơ hội trộm tiền đối thủ khi chiến đấu.</td>
+                    <td>PvP / Cướp bóc</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">12</td>
+                    <td class="name">Mắt Đại Bàng</td>
+                    <td>Có cơ hội gây 1-4 sát thương độ bền lên TOÀN BỘ các món giáp của người chơi địch.</td>
+                    <td>Tấn công / Phá hủy giáp</td>
+                    <td>Vũ khí tầm xa</td>
+                    <td class="rating">PvP: SSS+ | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">13</td>
+                    <td class="name">Sự Giữ</td>
+                    <td>Tự động hồi máu và giải hiệu ứng xấu cho toàn bộ đồng minh phe gần đó.</td>
+                    <td>Hỗ trợ đồng đội / Aura</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">14</td>
+                    <td class="name">Nghịch Chuyển</td>
+                    <td>Sát thương gây lên bạn có cơ hội bị chặn và hồi cho bạn 1-5 HP.</td>
+                    <td>Phòng thủ / Phản đòn hồi máu</td>
+                    <td>Giáp</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: B</td>
+                </tr>
+                <tr>
+                    <td class="stt">15</td>
+                    <td class="name">Im Lặng</td>
+                    <td>Có cơ hội ngăn kích hoạt các phù phép giáp tùy chỉnh của đối thủ.</td>
+                    <td>Khống chế / Khóa phù phép</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: C | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">16</td>
+                    <td class="name">Cấy Ghép Ngoại Lai</td>
+                    <td>Hồi lượng HP gấp 2 lần, vô hiệu hóa hao hụt độ đói (Cần Cấy Ghép III).</td>
+                    <td>Hồi phục tối thượng</td>
+                    <td>Giáp thân</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">17</td>
+                    <td class="name">Thiêu Đốt Thần Thánh</td>
+                    <td>Có cơ hội biến mọi đòn đánh vật lý thành phép diện rộng và thiêu đốt bằng lửa thần.</td>
+                    <td>Tấn công / AoE Thần thánh</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: SSS</td>
+                </tr>
+                <tr>
+                    <td class="stt">18</td>
+                    <td class="name">Dấu Ấn Quái Thú</td>
+                    <td>Khi kẻ địch bị dính dấu ấn, mọi sát thương nhận vào sẽ tăng gấp 2 trong tối đa 5 giây.</td>
+                    <td>Tấn công / Khuếch đại sát thương</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: C</td>
+                </tr>
+                <tr>
+                    <td class="stt">19</td>
+                    <td class="name">Kinh Hoàng</td>
+                    <td>Có cơ hội gieo Kinh Hoàng lên kẻ địch trong bán kính 32x32.</td>
+                    <td>Khống chế diện rộng</td>
+                    <td>Vũ khí/Giáp</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: S</td>
+                </tr>
+                <tr>
+                    <td class="stt">20</td>
+                    <td class="name">Hút Máu Chuỗi</td>
+                    <td>Có cơ hội hút lại máu từ nhiều kẻ địch gần mục tiêu bạn vừa gây sát thương.</td>
+                    <td>Tấn công / Hồi máu AoE</td>
+                    <td>Vũ khí</td>
+                    <td class="rating">PvP: SSS+ | PvE: SSS+ | Farm: SSS</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+</body>
+</html>
