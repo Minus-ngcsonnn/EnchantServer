@@ -5,301 +5,409 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cẩm Nang Phù Phép Minecraft - Professional Edition</title>
     <style>
+        /* Variables */
         :root {
-            --primary-color: #f8fafc;
-            --secondary-color: #0f172a;
-            --accent-color: #38bdf8;
-            --bg-color: #020617;
-            --card-bg: #111827;
-            --text-color: #e2e8f0;
-            --border-color: #334155;
-            --muted-color: #94a3b8;
-
-            /* Tier Colors from bonus.html */
-            --common-color: #64748b;
-            --rare-color: #1e90ff;
-            --epic-color: #7dd3fc;
-            --legendary-color: #ff8c00;
-            --relic-color: #6d28d9;
-            --mythic-color: #ff0000;
+            --grass-green: #4CAF50;
+            --emerald: #2ECC71;
+            --dirt-brown: #8B5A2B;
+            --stone-gray: #4A4A4A;
+            --diamond-blue: #00BCD4;
+            --gold: #FBC02D;
+            --redstone-red: #D32F2F;
+            --dark-bg: #1E1E1E;
+            --panel: rgba(27, 27, 30, 0.88);
+            --panel-strong: rgba(8, 10, 12, 0.95);
+            --text: #f5f7fa;
+            --muted: #d2d6db;
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
         }
 
+        /* Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
+            color: var(--text);
             background:
-                radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 20%),
-                linear-gradient(135deg, #020617, #0f172a 55%, #111827);
-            margin: 0;
-            padding: 32px 20px;
+                linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.52)),
+                radial-gradient(circle at top left, rgba(76,175,80,0.35), transparent 20%),
+                radial-gradient(circle at top right, rgba(0,188,212,0.26), transparent 22%),
+                linear-gradient(135deg, #101415, #1d2b1e 40%, #233127 70%, #111212);
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 22px 22px;
+            opacity: 0.2;
+        }
+
+        /* Layout */
+        .page-shell {
+            position: relative;
+            z-index: 1;
+            padding: 12px 16px 24px;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 22px;
+            margin: 0 auto 18px;
+            max-width: 1440px;
+            background: rgba(19, 25, 22, 0.72);
+            border: 2px solid rgba(255,255,255,0.14);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: #fdfdfd;
+            letter-spacing: 0.3px;
+        }
+
+        .brand-badge {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--grass-green), #2b6c23);
+            border: 2px solid rgba(255,255,255,0.25);
+            box-shadow: inset 0 0 0 2px rgba(0,0,0,0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: 0.2s ease;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(76,175,80,0.2);
+            border-color: rgba(76,175,80,0.55);
+            transform: translateY(-1px);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1440px;
             margin: 0 auto;
-            background: rgba(15, 23, 42, 0.88);
-            padding: 40px;
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+            background: var(--panel);
+            padding: 28px;
             border-radius: 18px;
-            box-shadow: 0 18px 50px rgba(0,0,0,0.45);
-            border: 1px solid rgba(148, 163, 184, 0.18);
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: var(--shadow);
             backdrop-filter: blur(8px);
         }
 
+        .content-area { min-width: 0; }
+
+        /* Navbar / Sidebar / Cards */
+        .toc {
+            position: sticky;
+            top: 84px;
+            background:
+                linear-gradient(180deg, rgba(22, 33, 24, 0.98), rgba(12, 14, 13, 0.98));
+            padding: 18px 18px 20px;
+            border-radius: 14px;
+            border: 3px solid var(--dirt-brown);
+            box-shadow: inset 0 0 0 2px rgba(183, 230, 124, 0.22);
+            overflow: hidden;
+        }
+
+        .toc::before {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border: 2px solid rgba(0, 188, 212, 0.45);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        .toc h2 {
+            margin-bottom: 14px;
+            font-size: 1.16em;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #f4f4f4;
+        }
+
+        .toc ul { list-style: none; }
+
+        .toc li {
+            margin-bottom: 8px;
+            padding: 7px 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--grass-green);
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+
+        .toc li:hover {
+            transform: translateX(4px);
+            background: rgba(76, 175, 80, 0.12);
+        }
+
+        .toc li > ul { margin-top: 8px; }
+        .toc li > ul li { border-left-color: var(--diamond-blue); }
+
+        .toc a {
+            color: #c8ffbe;
+            text-decoration: none;
+            display: block;
+            font-weight: 700;
+        }
+
+        .toc a:hover { color: #9fe7ff; }
+
         header {
             text-align: center;
-            border-bottom: 2px solid rgba(56, 189, 248, 0.4);
+            border-bottom: 2px solid rgba(0, 188, 212, 0.35);
             padding-bottom: 24px;
             margin-bottom: 30px;
         }
 
         h1 {
-            color: var(--primary-color);
             margin: 0 0 10px 0;
-            font-size: 2.4em;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            letter-spacing: 1.3px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            background: linear-gradient(90deg, #1e90ff, #ff8c00, #ff0000);
+            background: linear-gradient(90deg, #2AA7FF, #8B5A2B, #D32F2F);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 900;
         }
 
         .subtitle {
-            font-size: 1.05em;
-            color: var(--muted-color);
+            color: var(--muted);
+            font-weight: 700;
             margin-bottom: 6px;
-            font-weight: 600;
         }
 
         .edition {
             display: inline-block;
-            background: linear-gradient(90deg, #1e90ff, #a855f7, #ff0000);
-            color: white;
-            padding: 5px 14px;
-            border-radius: 999px;
-            font-size: 0.9em;
-            font-weight: 700;
             margin-top: 12px;
-            box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+            padding: 6px 16px;
+            border-radius: 999px;
+            color: white;
+            background: linear-gradient(90deg, #2ECC71, #00BCD4, #D32F2F);
+            font-weight: 800;
+            box-shadow: 0 0 18px rgba(0, 188, 212, 0.25);
         }
 
-        .toc {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
-            padding: 20px 30px;
+        .summary-card,
+        section table {
             border-radius: 12px;
-            margin-bottom: 35px;
-            border-left: 5px solid var(--accent-color);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.22);
-        }
-
-        .toc h2 {
-            margin-top: 0;
-            font-size: 1.3em;
-            color: #f8fafc;
-        }
-
-        .toc ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .toc li {
-            margin-bottom: 8px;
-        }
-
-        .toc a {
-            color: #7dd3fc;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .toc a:hover {
-            text-decoration: underline;
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .summary-card {
-            background: linear-gradient(135deg, #0f172a, #111827);
-            border: 1px solid #334155;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(20, 24, 26, 0.95), rgba(13, 18, 16, 0.97));
+            border: 1px solid rgba(255,255,255,0.08);
             padding: 22px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+            margin-bottom: 28px;
         }
 
-        .summary-card h2 {
-            color: #f8fafc;
-            margin: 0 0 15px 0;
-            font-size: 1.35em;
+        .summary-card h2,
+        h2.section-title {
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: 0.4px;
         }
 
-        .summary-table {
+        .summary-table,
+        table {
             width: 100%;
-            border-collapse: collapse;
-            background: #1e293b;
-            border-radius: 10px;
-            overflow: hidden;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(29, 33, 35, 0.96);
         }
 
         .summary-table th,
-        .summary-table td {
+        .summary-table td,
+        th,
+        td {
             padding: 12px 14px;
             text-align: left;
-            border-bottom: 1px solid #334155;
-            color: #e2e8f0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
-        .summary-table th {
-            background: #0f172a;
-            color: #94a3b8;
+        .summary-table th,
+        th {
+            position: sticky;
+            top: 0;
+            background: rgba(5, 7, 9, 0.98);
+            color: #d6dde5;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             font-size: 0.82em;
+            z-index: 1;
         }
 
-        .summary-table tr:hover {
-            background: rgba(255,255,255,0.03);
+        .summary-table tr:nth-child(even),
+        tbody tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
         }
 
-        .tier-badge {
+        .summary-table tr:hover,
+        tbody tr:hover {
+            background: rgba(76, 175, 80, 0.11);
+        }
+
+        .tier-badge,
+        .badge {
             display: inline-block;
             padding: 4px 10px;
             border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
         }
 
-        .badge-common { background: rgba(100, 116, 139, 0.15); color: #64748b; border: 1px solid #64748b; }
-        .badge-rare { background: rgba(30, 144, 255, 0.15); color: #1e90ff; border: 1px solid #1e90ff; }
-        .badge-epic { background: rgba(125, 211, 252, 0.18); color: #7dd3fc; border: 1px solid #7dd3fc; }
-        .badge-legend { background: rgba(255, 140, 0, 0.15); color: #ff8c00; border: 1px solid #ff8c00; }
-        .badge-relic { background: rgba(109, 40, 217, 0.18); color: #6d28d9; border: 1px solid #6d28d9; }
-        .badge-mythic { background: rgba(255, 0, 0, 0.15); color: #ff0000; border: 1px solid #ff0000; box-shadow: 0 0 8px rgba(255, 0, 0, 0.3); }
-
-        .rating-star {
-            color: #f59e0b;
-            letter-spacing: 2px;
-        }
-
-        section {
-            margin-bottom: 45px;
-        }
-
-        h2.section-title {
-            color: #f8fafc;
-            border-bottom: 2px solid rgba(148, 163, 184, 0.35);
-            padding-bottom: 8px;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
+        .badge-common { background: rgba(100,116,139,0.15); color: #8ca0b2; border: 1px solid #8ca0b2; }
+        .badge-rare { background: rgba(0,188,212,0.15); color: #63d8ed; border: 1px solid #63d8ed; }
+        .badge-epic { background: rgba(125,211,252,0.15); color: #7dd3fc; border: 1px solid #7dd3fc; }
+        .badge-legend { background: rgba(251,192,45,0.18); color: #ffd24c; border: 1px solid #ffd24c; }
+        .badge-relic { background: rgba(46,204,113,0.15); color: #6ef0a0; border: 1px solid #6ef0a0; }
+        .badge-mythic { background: rgba(211,47,47,0.18); color: #ff7a7a; border: 1px solid #ff7a7a; }
 
         .tier-title {
             padding: 12px 16px;
             border-radius: 10px;
             color: white;
-            font-size: 1.25em;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            font-size: 1.2em;
+            margin-top: 28px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+            font-weight: 800;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.18);
         }
 
         .tier-common { background: linear-gradient(90deg, #64748b, #475569); }
-        .tier-rare { background: linear-gradient(90deg, #1e90ff, #2563eb); }
-        .tier-epic { background: linear-gradient(90deg, #7dd3fc, #38bdf8); }
-        .tier-legendary { background: linear-gradient(90deg, #ff8c00, #ea580c); }
-        .tier-relic { background: linear-gradient(90deg, #6d28d9, #4c1d95); }
-        .tier-mythic { background: linear-gradient(90deg, #ff0000, #b91c1c); }
+        .tier-rare { background: linear-gradient(90deg, #00BCD4, #0f7890); }
+        .tier-epic { background: linear-gradient(90deg, #4CAF50, #2ECC71); }
+        .tier-legendary { background: linear-gradient(90deg, #FBC02D, #d99500); }
+        .tier-relic { background: linear-gradient(90deg, #8B5A2B, #70451c); }
+        .tier-mythic { background: linear-gradient(90deg, #D32F2F, #8b1111); }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 0.98));
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-        }
+        .rating-star { color: #f9d14b; letter-spacing: 2px; }
+        td.stt { text-align: center; width: 50px; font-weight: 800; }
+        td.name { font-weight: 800; color: #f9fbfc; white-space: nowrap; }
+        td.rating { white-space: nowrap; }
 
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.22);
-            color: #e2e8f0;
-        }
-
-        th {
-            background-color: #0f172a;
-            color: #94a3b8;
-            font-weight: 700;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        tr:hover {
-            background-color: rgba(255,255,255,0.03);
-        }
-
-        td.stt {
+        /* Footer */
+        footer {
+            margin-top: 24px;
+            padding: 18px 10px 6px;
             text-align: center;
-            font-weight: bold;
-            width: 50px;
-            color: #7f8c8d;
+            color: #c5d0d9;
+            font-size: 0.92rem;
         }
 
-        td.name {
+        .site-footer {
+            margin-top: 24px;
+            padding: 16px 18px;
+            border-radius: 12px;
+            background: rgba(11, 16, 14, 0.88);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .site-footer span {
+            color: #d7e0e8;
             font-weight: 700;
-            color: #f8fafc;
-            white-space: nowrap;
         }
 
-        td.rating {
-            white-space: nowrap;
-            font-size: 0.9em;
+        .site-footer .social {
+            display: flex;
+            gap: 8px;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-right: 4px;
+        .site-footer .social a {
+            color: #fff;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: rgba(76,175,80,0.18);
+            border: 1px solid rgba(76,175,80,0.38);
         }
 
-        .badge-pvp { background: #e74c3c; color: white; }
-        .badge-pve { background: #27ae60; color: white; }
-        .badge-farm { background: #f39c12; color: white; }
+        /* Responsive */
+        @media (max-width: 960px) {
+            .container { grid-template-columns: 1fr; }
+            .toc { position: static; }
+        }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            table, th, td {
-                font-size: 0.85em;
-                padding: 8px 10px;
-            }
+        @media (max-width: 700px) {
+            .topbar { padding: 10px 14px; }
+            .nav-links { gap: 4px; }
+            .nav-links a { padding: 7px 9px; font-size: 0.9rem; }
+            .container { padding: 16px; gap: 18px; }
+            table, th, td { font-size: 0.85rem; padding: 10px 8px; }
+            .tier-title { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
+<div class="page-shell">
+    <div class="topbar">
+        <div class="brand">
+            <span class="brand-badge">⛏</span>
+            <span>EnchantServer</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#section-summary" class="active">Overview</a>
+            <a href="#section-overview">功能</a>
+            <a href="#section-details">Details</a>
+        </nav>
+    </div>
 
-<div class="container">
-    <header>
-        <h1>CẨM NANG PHÙ PHÉP MINECRAFT</h1>
-        <div class="subtitle">Tài Liệu Tra Cứu Toàn Diện & Chi Tiết Nhất Từ Common Đến Mythic</div>
-        <div>Định Dạng Chuẩn Cho Game Thủ & Server Admin</div>
-        <div class="edition">2026 EDITION</div>
-    </header>
-
-    <div class="toc">
-        <h2>MỤC LỤC & TỔNG QUAN HỆ THỐNG</h2>
+    <div class="container">
+        <aside class="toc">
+        <h2>MỤC LỤC</h2>
         <ul>
             <li><a href="#section-summary">0. Bảng Tổng Quan Phẩm Cấp</a></li>
             <li><a href="#section-overview">1. Bảng Tổng Hợp Phù Phép Theo Chức Năng</a></li>
@@ -315,9 +423,17 @@
                 </ul>
             </li>
         </ul>
-    </div>
+    </aside>
 
-    <section id="section-summary" class="summary-card">
+    <div class="content-area">
+        <header>
+            <h1>CẨM NANG PHÙ PHÉP MINECRAFT</h1>
+            <div class="subtitle">Tài Liệu Tra Cứu Toàn Diện & Chi Tiết Nhất Từ Common Đến Mythic</div>
+            <div>Định Dạng Chuẩn Cho Game Thủ & Server Admin</div>
+            <div class="edition">2026 EDITION</div>
+        </header>
+
+        <section id="section-summary" class="summary-card">
         <h2>0. BẢNG TỔNG QUAN PHẨM CẤP</h2>
         <table class="summary-table">
             <thead>
@@ -2099,6 +2215,15 @@
             </tbody>
         </table>
     </section>
+
+    <footer class="site-footer">
+        <span>© 2026 EnchantServer • Minecraft-inspired UI</span>
+        <div class="social">
+            <a href="#">Discord</a>
+            <a href="#">Wiki</a>
+            <a href="#">Support</a>
+        </div>
+    </footer>
 </div>
 
 </body>
